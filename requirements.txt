@@ -30,4 +30,7 @@ ipympl>=0.8.2
 
 tskit
 msprime
+tsdate
+demesdraw
+seaborn
 jupyterquiz

@@ -5,40 +5,6 @@ import numpy as np
 from IPython.core.display import HTML
 from jupyterquiz import display_quiz
 
-# See https://github.com/jupyterlite/jupyterlite/issues/407#issuecomment-1353088447
-ready_text = """
-<table style="width: 100%;"><tr>
-<td style="text-align: left;">Your notebook is ready to go!</td>
-<td style="text-align: right;"><button type="button" id="button_for_indexeddb">Clear JupyterLite local storage</button></td>
-</tr>
-</table>
-<script>
-window.button_for_indexeddb.onclick = function(e) {
-    window.indexedDB.open('JupyterLite Storage').onsuccess = function(e) {
-        // There are also other tables that I'm not clearing:
-        // "counters", "settings", "local-storage-detect-blob-support"
-        let tables = ["checkpoints", "files"];
-
-        let db = e.target.result;
-        let t = db.transaction(tables, "readwrite");
-
-        function clearTable(tablename) {
-            let st = t.objectStore(tablename);
-            st.count().onsuccess = function(e) {
-                console.log("Deleting " + e.target.result + " entries from " + tablename + "...");
-                st.clear().onsuccess = function(e) {
-                    console.log(tablename + " is cleared!");
-                }
-            }
-        }
-
-        for (let tablename of tables) {
-            clearTable(tablename);
-        }
-    }
-};
-</script>
-"""
 
 class DownloadProgressBar(tqdm.tqdm):
     def update_to(self, b=1, bsize=1, tsize=None):
@@ -53,6 +19,44 @@ class Workbook:
         dt {color: white; background-color: green; padding: 4px; display: block; }
         dd {padding: 4px;}
     </style>"""
+
+    # See https://github.com/jupyterlite/jupyterlite/issues/407#issuecomment-1353088447
+    ready_text = """
+    <table style="width: 100%;"><tr>
+    <td style="text-align: left;">Your notebook is ready to go!</td>
+    <td style="text-align: right;"><button type="button" id="button_for_indexeddb">Clear JupyterLite local storage</button></td>
+    </tr>
+    </table>
+    """
+
+    reset_button = """
+    <script>
+    window.button_for_indexeddb.onclick = function(e) {
+        window.indexedDB.open('JupyterLite Storage').onsuccess = function(e) {
+            // There are also other tables that I'm not clearing:
+            // "counters", "settings", "local-storage-detect-blob-support"
+            let tables = ["checkpoints", "files"];
+
+            let db = e.target.result;
+            let t = db.transaction(tables, "readwrite");
+
+            function clearTable(tablename) {
+                let st = t.objectStore(tablename);
+                st.count().onsuccess = function(e) {
+                    console.log("Deleting " + e.target.result + " entries from " + tablename + "...");
+                    st.clear().onsuccess = function(e) {
+                        console.log(tablename + " is cleared!");
+                    }
+                }
+            }
+
+            for (let tablename of tables) {
+                clearTable(tablename);
+            }
+        }
+    };
+    </script>
+    """
 
     # Used for making SVG formatting smaller
     small_class = "x-lab-sml"
@@ -77,6 +81,9 @@ class Workbook:
         return DownloadProgressBar(
             unit='B', unit_scale=True, miniters=1, desc=url.split('/')[-1])
 
+    @property
+    def setup(self):
+        return HTML(self.css + self.ready_text + self.reset_button)
 
 
 class Workbook1(Workbook):
@@ -84,7 +91,7 @@ class Workbook1(Workbook):
     def __init__(self):
         self.ts = self.simulate_ts()
         assert len(self.ts.site(12).mutations) == 2  # check there are sites with multiple mutations
-        self.ts.dump("simulated.trees")
+        self.ts.dump("data/simulated.trees")
 
     def simulate_ts(self):
         pop_size=1000
@@ -667,7 +674,7 @@ class Workbook2(Workbook):
             "answers": [
                 {
                     "type": "value",
-                    "value": round(float(tskit.load("mutated_8_pop.ts").diversity()), 5),
+                    "value": round(float(tskit.load("data/mutated_8_pop.trees").diversity()), 5),
                     "correct": True,
                     "feedback":
                         "Correct: since this is a site-base measure, the same value will"
