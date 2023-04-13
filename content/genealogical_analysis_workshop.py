@@ -5,7 +5,7 @@ import numpy as np
 from IPython.core.display import HTML
 from jupyterquiz import display_quiz
 
-
+# See https://github.com/jupyterlite/jupyterlite/issues/407#issuecomment-1353088447
 ready_text = """
 <table style="width: 100%;"><tr>
 <td style="text-align: left;">Your notebook is ready to go!</td>
