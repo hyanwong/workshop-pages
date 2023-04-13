@@ -34,3 +34,4 @@ tsdate
 demesdraw
 seaborn
 jupyterquiz
+jupyterlab-filesystem-access
