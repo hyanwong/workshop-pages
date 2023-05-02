@@ -30,6 +30,7 @@ ipympl>=0.8.2
 
 tskit
 msprime
+tsinfer
 tsdate
 demesdraw
 seaborn
