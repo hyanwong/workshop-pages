@@ -454,7 +454,7 @@ class Workbook2(Workbook):
         Fst_values = []
         for ts in msprime.sim_ancestry(
             {i: num_deme_samples for i in range(num_demes)},
-            sequence_length=1e6,
+            sequence_length=2e6,
             demography=demography,
             recombination_rate=1e-8,
             random_seed=1234,
@@ -541,7 +541,7 @@ class Workbook2(Workbook):
             },
             {
                 "question":
-                    "How many big is the tree sequence, in MiB (binary megabytes) "
+                    "How big is the tree sequence, in MiB (binary megabytes) "
                     "to 1 decimal place?",
                 "type": "numeric",
                 "precision": 1,
