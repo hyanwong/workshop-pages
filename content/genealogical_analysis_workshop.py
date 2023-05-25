@@ -692,10 +692,85 @@ class Workbook2(Workbook):
             ]
         }])
 
+class Workbook3(Workbook):
+    def Q1(self):
+        display_quiz([
+            {
+                "question":
+                    "The first site was used for inference; what is its inference_type"
+                    " (as described in its metadata)?",
+                "type": "multiple_choice",
+                "answers": [
+                    {"answer": "parsimony", "correct": False, "feedback": "Try again"},
+                    {"answer": "full", "correct": True, "feedback": "Correct"},
+                    {"answer": "fuzzy", "correct": False, "feedback": "Try again"},
+                    {"answer": "potato", "correct": False, "feedback": "Really? You're joking, right?"},
+                ]
+            },
+        ])
+
+    def Q1bonus(self):
+        display_quiz([
+            {
+                "question":
+                    "In plot (c), inferred using the default mismatch ratio of 1, how many"
+                    " sites between 78 and 110 kb have been wrongly inferred to have"
+                    " multiple mutations?",
+                "type": "numeric",
+                "precision": 0,
+                "answers": [
+                    {
+                        "type": "value",
+                        "value": 2,
+                        "correct": True,
+                        "feedback":
+                            "Correct"
+                    },
+                    {
+                        "type": "range",
+                        "range": [ -100000000, 1000000], 
+                        "correct": False,
+                        "feedback":
+                            "Try again"
+                    },
+                ]
+            },
+        ])
+
+
+    def Q2(self):
+        display_quiz([{
+            "question":
+                "What is the site-based genetic diversity in both the original and "
+                "inferred tree sequences (to 5 decimal places)?",
+            "type": "numeric",
+            "precision": 5,
+            "answers": [
+                {
+                    "type": "value",
+                    "value": round(float(tskit.load("data/mutated_8_pop.trees").diversity()), 5),
+                    "correct": True,
+                    "feedback":
+                        "Correct: since this is a site-base measure, the same value will"
+                        " be obtained regardless of how accurately the genealogy has"
+                        " been inferred."
+                },
+                {
+                    "type": "range",
+                    "range": [ -100000000, 1000000], 
+                    "correct": False,
+                    "feedback":
+                        "Try again"
+                },
+            ]
+        }])
+
 def setup_workbook1():
     return Workbook1()
 
 def setup_workbook2():
     return Workbook2()
         
+def setup_workbook3():
+    return Workbook3()
 
