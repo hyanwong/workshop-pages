@@ -15,9 +15,10 @@ class DownloadProgressBar(tqdm.tqdm):
 
 class Workbook:
     css = """<style>
-        dl {border: green 1px solid; margin-top: 1em}
-        dt {color: white; background-color: green; padding: 4px; display: block; }
-        dd {padding: 4px;}
+        dl.exercise {border: green 1px solid; margin-top: 1em}
+        .exercise dt {color: white; background-color: green; padding: 4px; display: block; }
+        .exercise dt::before {content: '🧐 ';}
+        .exercise dd {padding: 4px;}
     </style>"""
 
     # See https://github.com/jupyterlite/jupyterlite/issues/407#issuecomment-1353088447
