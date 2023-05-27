@@ -184,11 +184,11 @@ class Workbook1(Workbook):
             "type": "many_choice",
             "answers": [
                 {"answer":
-                    "The samples correspond to all the nodes",
+                    "Each node in a tree sequence represents a sample",
                     "correct": False,
-                    "feedback": "There are usually other nodes in a tree sequence, representing ancestral genomes"},
+                    "feedback": "There are usually other nodes in a tree sequence, e.g. representing ancestral genomes"},
                 {"answer":
-                    "The samples usually correspond to only some of the nodes",
+                    "Each sample in a tree sequence is represented by a node",
                     "correct": True,
                     "feedback": ""},
                 {"answer":
