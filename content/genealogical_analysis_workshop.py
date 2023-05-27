@@ -178,78 +178,90 @@ class Workbook1(Workbook):
             },
         ])
 
-    def Q2(self):
-        display_quiz([
-            {
-                "question": "Concerning nodes and samples in a tree sequence, which of the following is true?",
-                "type": "many_choice",
-                "answers": [
-                    {"answer":
-                        "All nodes have a unique ID",
-                        "correct": True,
-                        "feedback": ""},
-                    {"answer":
-                        "The samples correspond to all the nodes",
-                        "correct": False,
-                        "feedback": "There are usually other nodes in a tree sequence, representing ancestral genomes"},
-                    {"answer":
-                        "The samples usually correspond to only some of the nodes",
-                        "correct": True,
-                        "feedback": ""},
-                    {"answer":
-                        "All nodes have a unique ID starting at 0",
-                        "correct": True,
-                        "feedback": ""},
-                    {"answer":
-                        "All nodes have a unique ID starting at 1",
-                        "correct": False,
-                        "feedback": "`Tskit` uses 0-based indexing for IDs"},
-                    {"answer":
-                        "The sample nodes are placed at the most recent time ($t=0$)",
-                        "correct": False,
-                        "feedback": "Although genomes are often sampled from the present day (§t=0$), this is not a strict requirement"},
-                    {"answer":
-                        "Sample nodes are commonly placed at the oldest time ($t=0$)",
-                        "correct": False,
-                        "feedback": "The oldest times in a tree sequence are usually times greater than 0, $t=0$ usually represents the *most recent* time"},
-                    {"answer":
-                        "Sample nodes are commonly placed at the most recent time ($t=0$)",
-                        "correct": True,
-                        "feedback": ""},
-                    {"answer":
-                        "Commonly have IDs from 0..num_samples, although this should not be relied upon",
-                        "correct": True,
-                        "feedback": "Often, software like `msprime` will assign IDs from 0..num_samples, but this is not a strict requirement"},
-                    {"answer":
-                        "Sample nodes always have IDs from 0..`num_samples`",
-                        "correct": False,
-                        "feedback": ""},
-                    {"answer":
-                        "Sample nodes represent haploid genomes ",
-                        "correct": True,
-                        "feedback": "Try again"},
-                    {"answer":
-                        "Sample nodes represent diploid genomes ",
-                        "correct": False,
-                        "feedback": "Try again"},
-                    {"answer":
-                        "The genealogy shows the ancestral relationships between the sample nodes",
-                        "correct": True,
-                        "feedback": "Try again"},
-                    {"answer":
-                        "The samples are always represented by 'leaves' (tips) in the genealogy",
-                        "correct": False,
-                        "feedback": "Try again"},
-                    {"answer":
-                        "The samples are never represented by 'leaves' (tips) in the genealogy",
-                        "correct": False,
-                        "feedback": "Try again"},
-                    {"answer":
-                        "The samples are often represented by 'leaves' (tips) in the genealogy",
-                        "correct": True,
-                        "feedback": "Try again"},
-                ]
-            }
+    def Q2a(self):
+        display_quiz([{
+            "question": "With regard to (sample) nodes in a tree sequence, select the true statements below",
+            "type": "many_choice",
+            "answers": [
+                {"answer":
+                    "All nodes have a unique ID",
+                    "correct": True,
+                    "feedback": ""},
+                {"answer":
+                    "The samples correspond to all the nodes",
+                    "correct": False,
+                    "feedback": "There are usually other nodes in a tree sequence, representing ancestral genomes"},
+                {"answer":
+                    "The samples usually correspond to only some of the nodes",
+                    "correct": True,
+                    "feedback": ""},
+                {"answer":
+                    "All nodes have a unique ID starting at 0",
+                    "correct": True,
+                    "feedback": ""},
+                {"answer":
+                    "All nodes have a unique ID starting at 1",
+                    "correct": False,
+                    "feedback": "`Tskit` uses 0-based indexing for IDs"},
+                {"answer":
+                    "Sample nodes are always placed at the most recent time ($t=0$)",
+                    "correct": False,
+                    "feedback": "Although genomes are often sampled from the present day (§t=0$), this is not a strict requirement"},
+                {"answer":
+                    "Sample nodes are commonly placed at the oldest time ($t=0$)",
+                    "correct": False,
+                    "feedback": "The oldest times in a tree sequence are usually times greater than 0, $t=0$ usually represents the *most recent* time"},
+                {"answer":
+                    "Sample nodes are commonly placed at the most recent time ($t=0$)",
+                    "correct": True,
+                    "feedback": ""},
+                {"answer":
+                    "Although sample nodes commonly have IDs from 0..num_samples, this should not be relied upon",
+                    "correct": True,
+                    "feedback": ""},
+                {"answer":
+                    "Sample nodes always have IDs from 0..`num_samples`",
+                    "correct": False,
+                    "feedback": "Often, software like `msprime` will assign IDs from 0..num_samples, but this is not a strict requirement"},
+                {"answer":
+                    "A node represents a haploid genome",
+                    "correct": True,
+                    "feedback": ""},
+                {"answer":
+                    "A node represents a diploid genome",
+                    "correct": False,
+                    "feedback": "Each diploid genome is represented by *two* nodes in a tree sequence"},
+            ]}
+        ])
+
+    def Q2b(self):
+        display_quiz([{
+            "question": "Harder question about sample nodes: select the true statements below",
+            "type": "many_choice",
+            "answers": [
+                {"answer":
+                    "The genealogy shows the known ancestral relationships between the sample nodes",
+                    "correct": True,
+                    "feedback": ""},
+                {"answer":
+                    "Samples are always represented by 'leaves' (tips) in the genealogy (i.e. they never have descendants)",
+                    "correct": False,
+                    "feedback": (
+                        "Yes: although tree sequences are often constructed such that samples are leaf nodes"
+                        " with no descendants, it is also possible to have 'internal nodes' as samples"
+                    )},
+                {"answer":
+                    "Samples are never represented by 'leaves' (tips) in the genealogy",
+                    "correct": False,
+                    "feedback": "It is common for a tree sequence sample to have no descendants (i.e. be a 'leaf' in the genealogy)"},
+                {"answer":
+                    "Samples are often represented by 'leaves' (tips) in the genealogy (i.e. commonly have no descendants)",
+                    "correct": True,
+                    "feedback": (
+                        "Although most of the trees in this workbook have samples on the leaves of local trees, "
+                        "is also possible to sample historical genomes, in which case samples can have descendants."
+                )},
+            ]}
         ])
 
     def Q3(self):
