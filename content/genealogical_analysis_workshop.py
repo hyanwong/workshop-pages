@@ -223,7 +223,7 @@ class Workbook1(Workbook):
                     "Sample nodes always have sequential IDs allocated from <code>0</code> upwards",
                     "correct": False,
                     "feedback": (
-                        "Often, software like `msprime` will assign sequential node IDs from zero upwards
+                        "Often, software like `msprime` will assign sequential node IDs from zero upwards"
                         "to the samples, but this is not a strict requirement, and other software may not do this")},
                 {"answer":
                     "A node represents a haploid genome",
