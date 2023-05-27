@@ -181,6 +181,80 @@ class Workbook1(Workbook):
     def Q2(self):
         display_quiz([
             {
+                "question": "Concerning nodes and samples in a tree sequence, which of the following is true?",
+                "type": "many_choice",
+                "answers": [
+                    {"answer":
+                        "All nodes have a unique ID",
+                        "correct": True,
+                        "feedback": ""},
+                    {"answer":
+                        "The samples correspond to all the nodes",
+                        "correct": False,
+                        "feedback": "There are usually other nodes in a tree sequence, representing ancestral genomes"},
+                    {"answer":
+                        "The samples usually correspond to only some of the nodes",
+                        "correct": True,
+                        "feedback": ""},
+                    {"answer":
+                        "All nodes have a unique ID starting at 0",
+                        "correct": True,
+                        "feedback": ""},
+                    {"answer":
+                        "All nodes have a unique ID starting at 1",
+                        "correct": False,
+                        "feedback": "`Tskit` uses 0-based indexing for IDs"},
+                    {"answer":
+                        "The sample nodes are placed at the most recent time ($t=0$)",
+                        "correct": False,
+                        "feedback": "Although genomes are often sampled from the present day (§t=0$), this is not a strict requirement"},
+                    {"answer":
+                        "Sample nodes are commonly placed at the oldest time ($t=0$)",
+                        "correct": False,
+                        "feedback": "The oldest times in a tree sequence are usually times greater than 0, $t=0$ usually represents the *most recent* time"},
+                    {"answer":
+                        "Sample nodes are commonly placed at the most recent time ($t=0$)",
+                        "correct": True,
+                        "feedback": ""},
+                    {"answer":
+                        "Commonly have IDs from 0..num_samples, although this should not be relied upon",
+                        "correct": True,
+                        "feedback": "Often, software like `msprime` will assign IDs from 0..num_samples, but this is not a strict requirement"},
+                    {"answer":
+                        "Sample nodes always have IDs from 0..`num_samples`",
+                        "correct": False,
+                        "feedback": ""},
+                    {"answer":
+                        "Sample nodes represent haploid genomes ",
+                        "correct": True,
+                        "feedback": "Try again"},
+                    {"answer":
+                        "Sample nodes represent diploid genomes ",
+                        "correct": False,
+                        "feedback": "Try again"},
+                    {"answer":
+                        "The genealogy shows the ancestral relationships between the sample nodes",
+                        "correct": True,
+                        "feedback": "Try again"},
+                    {"answer":
+                        "The samples are always represented by 'leaves' (tips) in the genealogy",
+                        "correct": False,
+                        "feedback": "Try again"},
+                    {"answer":
+                        "The samples are never represented by 'leaves' (tips) in the genealogy",
+                        "correct": False,
+                        "feedback": "Try again"},
+                    {"answer":
+                        "The samples are often represented by 'leaves' (tips) in the genealogy",
+                        "correct": True,
+                        "feedback": "Try again"},
+                ]
+            }
+        ])
+
+    def Q3(self):
+        display_quiz([
+            {
                 "question": "How many mutations at site 11?",
                 "type": "numeric",
                 "answers": [
@@ -218,7 +292,7 @@ class Workbook1(Workbook):
             },
         ])
 
-    def Q3(self):
+    def Q4(self):
         tree = self.ts.at(400_000)
         mut_counts = np.bincount([tree.num_samples(m.node) for m in tree.mutations()])
         display_quiz([
@@ -287,7 +361,7 @@ class Workbook1(Workbook):
             },
         ])
 
-    def Q4(self):
+    def Q5(self):
         display_quiz([{
             "question":
                 "What is the age (to the nearest generation) of the root in the first "
@@ -313,7 +387,7 @@ class Workbook1(Workbook):
             ]
         }])
 
-    def Q5a(self):
+    def Q6a(self):
         correct_name = self.ts.individual(self.ts.node(14).individual).metadata["name"]
         display_quiz([{
             "question":
@@ -333,7 +407,7 @@ class Workbook1(Workbook):
             ]
         }])
 
-    def Q5b(self):
+    def Q6b(self):
         display_quiz([{
             "question":
                 "How many populations are defined in this tree sequence?",
@@ -358,7 +432,7 @@ class Workbook1(Workbook):
             ]
         }])
 
-    def Q6a(self):
+    def Q7a(self):
         display_quiz([
             {
                 "question":
@@ -373,7 +447,7 @@ class Workbook1(Workbook):
             },
         ])
 
-    def Q6b(self):
+    def Q7b(self):
         for i, v in enumerate(self.ts.variants()):
             if i == 0:
                 a1 = int(v.genotypes[0])
