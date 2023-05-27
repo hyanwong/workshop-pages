@@ -212,11 +212,15 @@ class Workbook1(Workbook):
                     "correct": True,
                     "feedback": ""},
                 {"answer":
-                    "Although sample nodes commonly have IDs from <code>0..num_samples</code>, this should not be relied upon",
+                    "Although sample nodes commonly have IDs from <code>0</code> to <code>num_samples</code>, this should not be relied upon",
+                    "correct": False,
+                    "feedback": "Almost right, but think about the zero-based ID numbering"},
+                {"answer":
+                    "Although sample nodes commonly have IDs from <code>0</code> to <code>num_samples-1</code>, this should not be relied upon",
                     "correct": True,
                     "feedback": ""},
                 {"answer":
-                    "Sample nodes always have IDs from <code>0..num_samples</code>",
+                    "Sample nodes always have IDs from <code>0</code> to <code>num_samples</code>",
                     "correct": False,
                     "feedback": "Often, software like `msprime` will assign IDs from <code>0..num_samples</code>, but this is not a strict requirement"},
                 {"answer":
