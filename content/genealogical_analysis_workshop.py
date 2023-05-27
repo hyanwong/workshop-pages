@@ -184,10 +184,6 @@ class Workbook1(Workbook):
             "type": "many_choice",
             "answers": [
                 {"answer":
-                    "All nodes have a unique ID",
-                    "correct": True,
-                    "feedback": ""},
-                {"answer":
                     "The samples correspond to all the nodes",
                     "correct": False,
                     "feedback": "There are usually other nodes in a tree sequence, representing ancestral genomes"},
@@ -204,25 +200,25 @@ class Workbook1(Workbook):
                     "correct": False,
                     "feedback": "`Tskit` uses 0-based indexing for IDs"},
                 {"answer":
-                    "Sample nodes are always placed at the most recent time ($t=0$)",
+                    "Sample nodes are always placed at the most recent time (<em>node.time=0</em>)",
                     "correct": False,
-                    "feedback": "Although genomes are often sampled from the present day (§t=0$), this is not a strict requirement"},
+                    "feedback": "Although genomes are often sampled from the present day (<em>node.time=0</em>), this is not a strict requirement"},
                 {"answer":
-                    "Sample nodes are commonly placed at the oldest time ($t=0$)",
+                    "Sample nodes are commonly placed at the oldest time (<em>node.time>0</em>)",
                     "correct": False,
-                    "feedback": "The oldest times in a tree sequence are usually times greater than 0, $t=0$ usually represents the *most recent* time"},
+                    "feedback": "Sample nodes tend to be at recent times (often at time 0)"},
                 {"answer":
-                    "Sample nodes are commonly placed at the most recent time ($t=0$)",
+                    "Sample nodes are commonly placed at the most recent time (<em>node.time=0</em>)",
                     "correct": True,
                     "feedback": ""},
                 {"answer":
-                    "Although sample nodes commonly have IDs from 0..num_samples, this should not be relied upon",
+                    "Although sample nodes commonly have IDs from <code>0..num_samples</code>, this should not be relied upon",
                     "correct": True,
                     "feedback": ""},
                 {"answer":
-                    "Sample nodes always have IDs from 0..`num_samples`",
+                    "Sample nodes always have IDs from <code>0..num_samples</code>",
                     "correct": False,
-                    "feedback": "Often, software like `msprime` will assign IDs from 0..num_samples, but this is not a strict requirement"},
+                    "feedback": "Often, software like `msprime` will assign IDs from <code>0..num_samples</code>, but this is not a strict requirement"},
                 {"answer":
                     "A node represents a haploid genome",
                     "correct": True,
@@ -230,7 +226,7 @@ class Workbook1(Workbook):
                 {"answer":
                     "A node represents a diploid genome",
                     "correct": False,
-                    "feedback": "Each diploid genome is represented by *two* nodes in a tree sequence"},
+                    "feedback": "Each diploid genome is represented by <em>two</em> nodes in a tree sequence"},
             ]}
         ])
 
