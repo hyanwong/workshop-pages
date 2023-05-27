@@ -192,17 +192,17 @@ class Workbook1(Workbook):
                     "correct": True,
                     "feedback": ""},
                 {"answer":
-                    "All nodes have a unique ID starting at 0",
+                    "All nodes have a unique ID starting at <code>0</code>",
                     "correct": True,
                     "feedback": ""},
                 {"answer":
-                    "All nodes have a unique ID starting at 1",
+                    "All nodes have a unique ID starting at </code>1<code>",
                     "correct": False,
-                    "feedback": "`Tskit` uses 0-based indexing for IDs"},
+                    "feedback": "`Tskit` uses zero-based indexing for IDs"},
                 {"answer":
                     "Sample nodes are always placed at the most recent time (<em>node.time=0</em>)",
                     "correct": False,
-                    "feedback": "Although genomes are often sampled from the present day (<em>node.time=0</em>), this is not a strict requirement"},
+                    "feedback": "Although genomes are often sampled from the present day (node.time=0), this is not a strict requirement"},
                 {"answer":
                     "Sample nodes are commonly placed at the oldest time (<em>node.time>0</em>)",
                     "correct": False,
@@ -220,9 +220,11 @@ class Workbook1(Workbook):
                     "correct": True,
                     "feedback": ""},
                 {"answer":
-                    "Sample nodes always have IDs from <code>0</code> to <code>num_samples</code>",
+                    "Sample nodes always have sequential IDs allocated from <code>0</code> upwards",
                     "correct": False,
-                    "feedback": "Often, software like `msprime` will assign IDs from <code>0..num_samples</code>, but this is not a strict requirement"},
+                    "feedback": (
+                        "Often, software like `msprime` will assign sequential node IDs from zero upwards
+                        "to the samples, but this is not a strict requirement, and other software may not do this")},
                 {"answer":
                     "A node represents a haploid genome",
                     "correct": True,
@@ -230,7 +232,7 @@ class Workbook1(Workbook):
                 {"answer":
                     "A node represents a diploid genome",
                     "correct": False,
-                    "feedback": "Each diploid genome is represented by <em>two</em> nodes in a tree sequence"},
+                    "feedback": "Each diploid genome is represented by 2 nodes in a tree sequence"},
             ]}
         ])
 
