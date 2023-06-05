@@ -86,7 +86,7 @@ class Workbook:
     @property
     def setup(self):
         html = self.css + self.ready_text
-        if sys.platform == "pyodide":
+        if "pyodide" in sys.modules:
             html += self.pyodide_info
         return HTML(html)
 
