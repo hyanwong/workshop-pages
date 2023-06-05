@@ -1,4 +1,5 @@
 import msprime
+import sys
 import tskit
 import tqdm
 import numpy as np
@@ -23,30 +24,30 @@ class Workbook:
 
     # See https://github.com/jupyterlite/jupyterlite/issues/407#issuecomment-1353088447
     ready_text = """
-    <table style="width: 100%;"><tr>
-    <td style="text-align: left;">Your notebook is ready to go!</td>
-    <td style="text-align: right;"><button type="button" id="button_for_indexeddb">Clear JupyterLite local storage</button></td>
-    </tr>
-    </table>
+    <h3 style="text-align: center;">Your notebook is ready to go!</h3>
     """
 
-    reset_button = """
-    <script>
-    window.button_for_indexeddb.onclick = function(e) {
+    pyodide_info = """
+    <div class="alert alert-block alert-info">
+    NB: this notebook appears to be running directly in your browser, via
+    <a href='https://jupyterlite.readthedocs.io/en/latest/'w>JupyterLite</a>, so
+    any changes you make will be permanently stored in your browser. If you need
+    to reset workbooks to their original state (losing all your changes), click
+    <button type="button" onclick="function(e) {
         window.indexedDB.open('JupyterLite Storage').onsuccess = function(e) {
-            // There are also other tables that I'm not clearing:
-            // "counters", "settings", "local-storage-detect-blob-support"
-            let tables = ["checkpoints", "files"];
+            // There are also other tables that we're not clearing:
+            // 'counters', 'settings', 'local-storage-detect-blob-support'
+            let tables = ['checkpoints', 'files'];
 
             let db = e.target.result;
-            let t = db.transaction(tables, "readwrite");
+            let t = db.transaction(tables, 'readwrite');
 
             function clearTable(tablename) {
                 let st = t.objectStore(tablename);
                 st.count().onsuccess = function(e) {
-                    console.log("Deleting " + e.target.result + " entries from " + tablename + "...");
+                    console.log('Deleting ' + e.target.result + ' entries from ' + tablename + '...');
                     st.clear().onsuccess = function(e) {
-                        console.log(tablename + " is cleared!");
+                        console.log(tablename + ' is cleared!');
                     }
                 }
             }
@@ -55,8 +56,8 @@ class Workbook:
                 clearTable(tablename);
             }
         }
-    };
-    </script>
+    };">Clear JupyterLite local storage</button>
+    then reload this web page.</div>
     """
 
     # Used for making SVG formatting smaller
@@ -84,7 +85,10 @@ class Workbook:
 
     @property
     def setup(self):
-        return HTML(self.css + self.ready_text + self.reset_button)
+        html = self.css + self.ready_text
+        if sys.platform == "pyodide":
+            html += self.pyodide_info
+        return HTML(html)
 
 
 class Workbook1(Workbook):
