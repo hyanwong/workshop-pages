@@ -28,12 +28,8 @@ class Workbook:
     """
 
     pyodide_info = """
-    <div class="alert alert-block alert-info">
-    NB: this notebook appears to be running directly in your browser, via
-    <a href='https://jupyterlite.readthedocs.io/en/latest/'w>JupyterLite</a>, so
-    any changes you make will be permanently stored in your browser. If you need
-    to reset workbooks to their original state (losing all your changes), click
-    <button type="button" onclick="function(e) {
+    <script>
+    function clear_storage(e) {
         window.indexedDB.open('JupyterLite Storage').onsuccess = function(e) {
             // There are also other tables that we're not clearing:
             // 'counters', 'settings', 'local-storage-detect-blob-support'
@@ -56,7 +52,15 @@ class Workbook:
                 clearTable(tablename);
             }
         }
-    };">Clear JupyterLite local storage</button>
+        alert('Local storage cleared. Now reload this page');
+    };
+    </script>
+    <div class="alert alert-block alert-info">
+    NB: this notebook appears to be running directly in your browser, via
+    <a href='https://jupyterlite.readthedocs.io/en/latest/'w>JupyterLite</a>, so
+    any changes you make will be permanently stored in your browser. If you need
+    to reset workbooks to their original state (losing all your changes), click
+    <button type="button" onclick="clear_storage(this)">Clear JupyterLite local storage</button>
     then reload this web page.</div>
     """
 
