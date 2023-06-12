@@ -114,3 +114,6 @@ dmypy.json
 # jupyterlite
 *.doit.db
 _output
+ts.tgz
+copy_of_ts.trees
+simulated.trees
