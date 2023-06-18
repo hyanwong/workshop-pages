@@ -661,6 +661,28 @@ class Workbook2(Workbook):
             },
         ])
 
+    def Q4(self):
+        display_quiz([
+            {
+                "question":
+                    "What was the publication date of the study on which the AmericanAdmixture_4B11 model is based?",
+                "type": "numeric",
+                "precision": 0,
+                "answers": [
+                    {
+                        "type": "value",
+                        "value": 2011,
+                        "correct": True,
+                        "feedback": "Correct"
+                    },
+                    {
+                        "type": "default",
+                        "feedback": "It's the paper by Browning et al. Try again."
+                    }
+                ]
+            }
+        ])
+
     def Q5(self):
         display_quiz([
             {
